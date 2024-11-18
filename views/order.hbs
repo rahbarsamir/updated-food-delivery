@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hunder hub</title>
+    <link rel="stylesheet" href="css/style-order.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <aside>
+            <div class="nav">
+                <div class="top">
+                   <a href="/"><img class="img-logo" src="img/logo.png" alt=""></a>
+                    <div class="title">Hungry
+                        <span>Hub</span>
+                    </div>
+                    <div class="close-btn"><span class="material-symbols-outlined">close</span></div>
+                </div>
+
+                <div class="sideitem">
+                    <a href="/" class="">
+                        <span class="material-symbols-outlined"> home</span>
+                        <span class="sidebar_title">Home</span>
+
+                    </a>
+                    <a href="/cart" >
+                        <span class="material-symbols-outlined"> local_dining</span>
+                        <span class="sidebar_title">Cart</span>
+
+                    </a>
+                    <a href="/order" class="active">
+                        <span class="material-symbols-outlined">person</span>
+                        <span class="sidebar_title">order</span>
+
+                    </a>
+                    <a href="/help">
+                        <span class="material-symbols-outlined"> help</span>
+                        <span class="sidebar_title">Help</span>
+
+                    </a>
+                </div>
+                <div class="leftside">
+                    <div class="theme">
+                        <div class="mode">
+                            <span class=" active material-symbols-outlined ">light_mode</span>
+                            <span class="  material-symbols-outlined">dark_mode</span>
+
+                        </div>
+
+
+                         <a href="/profile" class="profile">
+                            <h2>Hey,</h2>
+                            <h3>{{name.myname}}</h3>
+                            <img class="ppic" src="img/user.png">
+                        </a>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </aside>
+        <!----------end of side bar-->
+
+        <!----------end of side bar-->
+        <div class="main" id="main">
+            <div class="cart-title"><span class="material-symbols-outlined iconn"> local_dining</span> orders</div>
+            <div class="section" id="section">
+
+                <div class="menu">
+                    <div class="category"></div>
+                    <div id="food" class="food">
+                        {{#each order}}
+                        <div id="itm" class="item">
+                            <div class="l-detail">
+                                <div id="aa{{this.classname}}" class="food-name">{{this.foodName}}</div>
+                                <div class="food-disc"></div>
+
+                                <div id="price" class="price">&#8377 {{this.price}}</div>
+
+                            </div>
+                            <div class="r-detail">
+                                <div class="pic"><img src="{{this.foodImg}}"></div>
+                                <div class="addbtn">{{this.qty}}</div>
+                            </div>
+                        </div>
+                        {{/each}}
+            
+                        
+
+
+
+                    </div>
+                </div>
+                <div class="cartlist">
+                    <div class="bill total">
+                        <div  class="text">total amount to pay</div>
+                        <div id="amount" class="price">{{total}}</div>
+                        
+                    </div>
+                    <div class="timer">
+                        <div>just wait</div>
+                        <div id="timer" ></div>
+                        <div>for your delicious food</div>
+                    </div>
+                    <div class="checkout">
+                        <div class="cbtn" onclick="cancel()">cancel order</div>
+                        {{!-- <button type="submit" class="cbtn">checkout</button> --}}
+                    </div>
+                </div>
+
+            </div>
+        
+        </div>
+        <!----------end of main-->
+    </div>
+    
+</body>
+
+
+
+{{!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="js/index-order.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+
+
+
+</html>

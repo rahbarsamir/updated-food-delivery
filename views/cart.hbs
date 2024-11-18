@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hungry hub</title>
+    <link rel="stylesheet" href="css/style-cart.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body class="body">
+
+    <div class="container" id="container">
+        <aside>
+            <div class="nav">
+                <div class="top">
+                 <a href="/"><img class="img-logo" src="img/logo.png" alt=""></a>
+                    <div class="title">Hungry
+                        <span>Hub</span>
+                    </div>
+                    <div class="close-btn"><span class="material-symbols-outlined">close</span></div>
+                </div>
+
+                <div class="sideitem">
+                    <a href="/" class="">
+                        <span class="material-symbols-outlined"> home</span>
+                        <span class="sidebar_title">Home</span>
+
+                    </a>
+                    <a href="/cart" class="active">
+                        <span class="material-symbols-outlined"> local_dining</span>
+                        <span class="sidebar_title">Cart</span>
+
+                    </a>
+                    <a href="/order">
+                        <span class="material-symbols-outlined">person</span>
+                        <span class="sidebar_title">order</span>
+
+                    </a>
+                    <a href="/help">
+                        <span class="material-symbols-outlined"> help</span>
+                        <span class="sidebar_title">Help</span>
+
+                    </a>
+                </div>
+                <div class="leftside">
+                    <div class="theme">
+                        <div class="mode">
+                            <span class=" active material-symbols-outlined ">light_mode</span>
+                            <span class="  material-symbols-outlined">dark_mode</span>
+
+                        </div>
+
+
+                         <a href="/profile" class="profile">
+                            <h2>Hey,</h2>
+                            <h3>{{name.myname}}</h3>
+                            <img class="ppic" src="img/user.png">
+                        </a>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </aside>
+        <!----------end of side bar-->
+
+        <!----------end of side bar-->
+        <div class="main" id="main">
+            <div class="cart-title"><span class="material-symbols-outlined iconn"> local_dining</span> my cart</div>
+            <div class="section" id="section">
+
+                <div class="menu">
+                    <div class="category"></div>
+                    <div id="food" class="food">
+                        {{#each cartdetail}}
+                        <div id="itm" class="item">
+                            <div class="l-detail">
+                                <div class="cross-icon" onclick="remove('{{this.classname}}')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></div>
+                                <div id="aa{{this.classname}}" class="food-name">{{this.foodName}}</div>
+                                <div class="food-disc"></div>
+
+                                <div id="price" class="price">&#8377 {{this.price}}</div>
+
+                            </div>
+                            <div class="r-detail">
+                                <div class="pic"><img src="{{this.foodImg}}"></div>
+                                <div class="addbtn">
+
+                                     <div class="addbttn">
+                                        <form id='myform' method='POST' class='quantity' action='#'>
+                                            <input type='button' value='-' class='qtyminus minus' field='quantity' onclick="minus({{this.price}},a{{this.classname}},aa{{this.classname}})"/>
+                                            <input type='text' name='quantity' value='{{this.qty}}' class='qty' id="a{{this.classname}}" />
+                                            <input type='button' value='+' class='qtyplus plus' field='quantity' onclick="plus({{this.price}},aa{{this.classname}})"/>
+                                        </form>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+            
+                        
+
+
+
+                    </div>
+                </div>
+                <div class="cartlist">
+                    <div class="bill">
+                        <div class="text">total</div>
+                        <div id="total" class="price">{{totalprice}}</div>
+                    </div>
+                    <div class="bill">
+                        <div class="text">delivery charges</div>
+                        <div class="price">50</div>
+                    </div>
+                    <div class="bill total">
+                        <div  class="text">estimated total</div>
+                        <div id="amount" class="price">{{etotal}}</div>
+                    </div>
+                    <div class="checkout">
+                        <div class="cbtn" onclick="submit()">checkout</div>
+                        {{!-- <button type="submit" class="cbtn">checkout</button> --}}
+                    </div>
+                </div>
+
+            </div>
+        
+        </div>
+        <!----------end of main-->
+        <div class="google dis-block" id="google">
+            <h1>add your location</h1>
+            <div id="map"></div>
+            <div class="submit-btn">
+                <div class="cbtn sub-btn" onclick="order()">order</div>
+            </div>
+            </div>
+    </div>
+    
+</body>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRHA235jLijeMLGnf03OO7z17yzSSMTvs&callback=initMap&v=weekly"
+      defer
+    ></script>
+
+
+{{!-- <script src="http://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="js/index-cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+
+
+
+</html>
